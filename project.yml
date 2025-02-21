@@ -15,8 +15,7 @@ packages:
           webSecure: Qj8Sqd1Hf5nLYkb
           parameters: {}
           environment:
-            DO_API_TOKEN: "${DO_API_TOKEN}"
-            JACK123: JACK
+            DO_API_TOKEN: ${DO_API_TOKEN}
           annotations: {}
           limits:
             memory: 512
