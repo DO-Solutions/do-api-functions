@@ -72,7 +72,7 @@ def main(args):
         
         return {
             'body': {
-                'droplets': droplet_info,
+                'droplets': json.dumps(droplet_info),
                 'count': len(droplet_info),
                 'status': 'success'
             }
@@ -81,7 +81,18 @@ def main(args):
     except Exception as e:
         return {
             'body': {
-                'error': str(e),
-                'status': 'error'
+                'droplets': json.dumps([]),
+                'count': 0,
+                'status': 'error',
+                'error': str(e)
             }
         }
+
+# For local testing
+if __name__ == "__main__":
+    test_args = {
+        'api_token': 'your_test_token',
+        'limit': 5
+    }
+    result = main(test_args)
+    print(json.dumps(result, indent=2))
