@@ -1,0 +1,23 @@
+parameters: {}
+environment: {}
+packages:
+    - name: do-api
+      shared: false
+      environment: {}
+      parameters: {}
+      annotations: {}
+      functions:
+        - name: api
+          binary: false
+          main: ""
+          runtime: python:3.11
+          web: true
+          webSecure: Qj8Sqd1Hf5nLYkb
+          parameters: {}
+          environment:
+            DO_API_TOKEN: ${DIGITALOCEAN_TOKEN}
+            JACK: JACK
+          annotations: {}
+          limits:
+            memory: 512
+            timeout: 5000
