@@ -1,0 +1,17 @@
+{
+    "limit": {
+      "type": "number",
+      "required": false,
+      "description": "Maximum number of droplets to return (default: 10)"
+    },
+    "droplet_id": {
+      "type": "string",
+      "required": false,
+      "description": "Specific droplet ID to retrieve information for. If not provided, returns a list of droplets"
+    },
+    "tag": {
+      "type": "string",
+      "required": false,
+      "description": "Filter droplets by tag"
+    }
+  }

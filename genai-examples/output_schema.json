@@ -1,0 +1,19 @@
+{
+    "error": {
+      "description": "Error message if the request failed",
+      "type": "string",
+      "required": false
+    },
+    "status": {
+      "description": "Status of the API request (success or error)",
+      "type": "string"
+    },
+    "droplets": {
+      "type": "string",
+      "description": "JSON string containing list of droplet information"
+    },
+    "count": {
+      "type": "number",
+      "description": "Total number of droplets returned"
+    }
+  }
