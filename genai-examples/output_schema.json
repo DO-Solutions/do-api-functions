@@ -10,10 +10,22 @@
     },
     "droplets": {
       "type": "string",
-      "description": "JSON string containing list of droplet information"
+      "description": "JSON string containing list of droplet information",
+      "required": false
     },
     "count": {
       "type": "number",
-      "description": "Total number of droplets returned"
+      "description": "Total number of droplets returned",
+      "required": false
+    },
+    "action": {
+      "type": "object",
+      "description": "Response from the droplet action API (when power_on or power_off is performed)",
+      "required": false
+    },
+    "message": {
+      "type": "string",
+      "description": "Status message for action operations",
+      "required": false
     }
   }

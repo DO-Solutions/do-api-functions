@@ -7,11 +7,16 @@
     "droplet_id": {
       "type": "string",
       "required": false,
-      "description": "Specific droplet ID to retrieve information for. If not provided, returns a list of droplets"
+      "description": "Specific droplet ID to retrieve information for or to perform an action on. If not provided, returns a list of droplets"
     },
     "tag": {
       "type": "string",
       "required": false,
       "description": "Filter droplets by tag"
+    },
+    "action": {
+      "type": "string",
+      "required": false,
+      "description": "Action to perform on a droplet. Supported values: 'power_on', 'power_off'. Requires droplet_id to be specified"
     }
   }

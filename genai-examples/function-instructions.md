@@ -1,3 +1,3 @@
 ref: https://docs.digitalocean.com/products/genai-platform/concepts/function-instructions/
 
-Call this function when the user asks about their DigitalOcean droplets, virtual machines, instances, or servers. Use this function to retrieve information about one or more droplets in a DigitalOcean account.
+Call this function when the user asks about their DigitalOcean droplets, virtual machines, instances, or servers. Use this function to retrieve information about one or more droplets in a DigitalOcean account. You can also use this function to power on or power off a specific droplet when the user asks to start, turn on, boot, stop, turn off, or shut down a droplet.
