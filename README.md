@@ -113,7 +113,7 @@ Make sure to integrate your deployment pipeline with the `project.yml` configura
 2. Configure your DigitalOcean API token
 3. Deploy the function:
    ```bash
-   doctl serverless deploy .
+   doctl serverless deploy . --remote-build
    ```
 
 ---
