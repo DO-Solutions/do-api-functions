@@ -1,4 +1,4 @@
-A serverless function example built for DigitalOcean Functions that retrieves droplet information from the DigitalOcean API. This function demonstrates how to create API-connected serverless functions that can be integrated with GenAI platforms for function calling capabilities. Built using Python 3.11, it leverages the [pydo](https://pypi.org/project/pydo/) client to interact with DigitalOcean services.
+A serverless function example built for DigitalOcean Functions that retrieves droplet information and controls power state of droplets via the DigitalOcean API. This function demonstrates how to create API-connected serverless functions that can be integrated with GenAI platforms for function calling capabilities. Built using Python 3.11, it leverages the [pydo](https://pypi.org/project/pydo/) client to interact with DigitalOcean services.
 
 ---
 
@@ -15,6 +15,9 @@ A serverless function example built for DigitalOcean Functions that retrieves dr
 - [Deployment](#deployment)
   - [Deploying to DigitalOcean Functions](#deploying-to-digitalocean-functions)
 - [Sample Package](#sample-package)
+- [Function Parameters](#function-parameters)
+- [Response Format](#response-format)
+- [Usage Examples](#usage-examples)
 
 ---
 
@@ -28,8 +31,9 @@ This function supports fetching details for a specific droplet by supplying a `d
 
 This function can be used as:
 - A function calling endpoint for LLMs to retrieve real-time infrastructure information
-- An API connector for AI agents managing cloud resources
+- An API connector for AI agents managing cloud resources, including power control operations
 - A data source for AI-powered cloud management dashboards
+- An automation endpoint for power management of cloud resources
 
 > **Note:** The DigitalOcean API token must be provided via the `DO_API_TOKEN` environment variable.
 
@@ -39,7 +43,8 @@ This function can be used as:
 
 - **Retrieve Specific Droplet:** Get information on a single droplet using its `droplet_id`.
 - **List Droplets:** Retrieve a list of droplets with optional filtering using a `tag` and pagination via the `limit` parameter.
-- **JSON Response:** Returns droplet details in a JSON formatted response.
+- **Power Control:** Manage droplet power state with `power_on` and `power_off` actions.
+- **JSON Response:** Returns droplet details and action status in a JSON formatted response.
 - **Web-Enabled Function:** Configured to be deployed as a web-accessible function with an associated web secure token.
 
 ---
@@ -129,6 +134,69 @@ Usage example:
 args = {"name": "Alice"}
 result = main(args)
 print(result)
+```
+
+---
+
+## Function Parameters
+
+The function accepts the following parameters in its input:
+
+- `droplet_id` (optional): Specific droplet ID to retrieve information for or to perform actions on
+- `tag` (optional): Filter droplets by tag when listing
+- `limit` (optional): Maximum number of droplets to return (default: 10)
+- `action` (optional): Power control action to perform on a droplet. Supported values:
+  - `power_on`: Turn on the specified droplet
+  - `power_off`: Turn off the specified droplet
+
+## Response Format
+
+The function returns a JSON response with the following structure:
+
+For droplet information requests:
+```json
+{
+    "body": {
+        "droplets": "[ ... droplet information array ... ]",
+        "count": number,
+        "status": "success"
+    }
+}
+```
+
+For power control actions:
+```json
+{
+    "body": {
+        "action": { ... action response object ... },
+        "status": "success",
+        "message": "Power [on/off] initiated for droplet [id]"
+    }
+}
+```
+
+## Usage Examples
+
+```python
+# List droplets (default behavior)
+args = {
+    'limit': 5
+}
+
+# Power on a specific droplet
+args = {
+    'droplet_id': '12345',
+    'action': 'power_on'
+}
+
+# Power off a specific droplet
+args = {
+    'droplet_id': '12345',
+    'action': 'power_off'
+}
+
+result = main(args)
+print(json.dumps(result, indent=2))
 ```
 
 ---
